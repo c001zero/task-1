@@ -1,6 +1,13 @@
 "uses strict";
-let money = +prompt("Ваш бюджет на месяц?", ''),
+let money, time;
+function start() {
+    money = +prompt("Ваш бюджет на месяц?", '');
     time = prompt("Введите дату в формате YYYY-MM-DD", '');
+    while (isNaN(money) || money == "" || money == null) {
+        money = +prompt("Ваш бюджет на месяц?", '');
+    }
+}
+start();
 
 let appData = {
         budget: money,
@@ -21,4 +28,14 @@ for (let i = 0; i < 2; i++) {
         }
 }
 appData.moneyPerDay = appData.budget / 30 ;
-alert(appData.moneyPerDay);
+alert(appData.moneyPerDay.toFixed());
+
+function checkSavengs() {
+    if (appData.savings) {
+        let save = +prompt("Какова сумма накоплений", ''),
+            procent = +prompt("Каков процент", '');
+        appData.monthInCome = save / 100 / 12 * procent;
+        alert("Доход в месяц: " + appData.monthInCome, '');
+    }
+}
+checkSavengs();
