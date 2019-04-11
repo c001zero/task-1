@@ -33,8 +33,8 @@ alert(appData.moneyPerDay.toFixed());
 function checkSavengs() {
     if (appData.savings) {
         let save = +prompt("Какова сумма накоплений", ''),
-            procent = +prompt("Каков процент", '');
-        appData.monthInCome = save / 100 / 12 * procent;
+            percent = +prompt("Каков процент", '');
+        appData.monthInCome = save / 100 / 12 * percent;
         alert("Доход в месяц: " + appData.monthInCome, '');
     }
 }
