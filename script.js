@@ -15,27 +15,32 @@ let appData = {
         optionalExpenses: {},
         income: [],
         timeData: time,
-        savings: false
+        savings: false,
+        chooseExpenses: function () {
+            for (let i = 0; i < 2; i++) {
+                let a = prompt("Введите обязательную статью расходов в этом месяце", ''),
+                    b = prompt("Во сколько обойдется?", '');
+                    if (typeof(a) === 'string' && typeof(a) != null && typeof(b) != null && a != '' && b != '' && a.length < 50) {
+                        appData.expenses[a] = b;
+                    } else {
+                        i--;
+                    }
+            }
+        },
+        decectDayBudget: function () {
+            appData.moneyPerDay = appData.budget / 30 ;
+            alert(appData.moneyPerDay.toFixed());
+        },
+        checkSavings: function () {
+            if (appData.savings) {
+                let save = +prompt("Какова сумма накоплений", ''),
+                    percent = +prompt("Каков процент", '');
+                appData.monthInCome = save / 100 / 12 * percent;
+                alert("Доход в месяц: " + appData.monthInCome, '');
+            }
+        }
 };
 
-for (let i = 0; i < 2; i++) {
-    let a = prompt("Введите обязательную статью расходов в этом месяце", ''),
-        b = prompt("Во сколько обойдется?", '');
-        if (typeof(a) === 'string' && typeof(a) != null && typeof(b) != null && a != '' && b != '' && a.length < 50) {
-            appData.expenses[a] = b;
-        } else {
-            i--;
-        }
-}
-appData.moneyPerDay = appData.budget / 30 ;
-alert(appData.moneyPerDay.toFixed());
-
-function checkSavengs() {
-    if (appData.savings) {
-        let save = +prompt("Какова сумма накоплений", ''),
-            percent = +prompt("Каков процент", '');
-        appData.monthInCome = save / 100 / 12 * percent;
-        alert("Доход в месяц: " + appData.monthInCome, '');
-    }
-}
-checkSavengs();
+appData.chooseExpenses();
+appData.decectDayBudget();
+appData.checkSavings();
